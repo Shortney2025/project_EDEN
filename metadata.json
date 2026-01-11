@@ -1,0 +1,8 @@
+{
+  "name": "Project Eden",
+  "description": "A solar-punk reforestation platform empowering Guardians to restore Earth's canopy through real-time verified actions and AI-driven plant intelligence.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
