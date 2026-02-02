@@ -1,11 +1,12 @@
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 import React from "react";
+import Page from "../components/Page";
+import Teaser from "../components/Teaser";
 
-// Placeholder component mappings for Storyblok-managed components.
-// Add actual component mappings here as Storyblok components are used.
+// Component mappings for Storyblok-managed components.
 const components = {
-  // Example:
-  // page: (props) => <div {...props} />,
+  page: Page,
+  teaser: Teaser,
 };
 
 export const initStoryblok = () => {
