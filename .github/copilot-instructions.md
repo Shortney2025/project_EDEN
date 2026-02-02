@@ -11,6 +11,7 @@ This file contains concise, actionable guidance for an AI coding agent to be imm
 ## What to know first (high-value facts) 🎯
 - AI integrations live in `services/geminiService.ts`. The `ChatBot` (components/ChatBot.tsx) constructs a conversational GenAI call and sets `systemInstruction` to define persona ("Lovel AI").
 - Storyblok CMS integration is initialized in `services/storyblok.tsx`. Copy `.env.local.example` to `.env.local` and set `STORYBLOK_API_TOKEN`.
+- A lightweight ML scaffold was added: `models/se4l.py`, training & preprocess helpers in `scripts/` and a `services/lovell_ai.py` wrapper. These are optional for local experimentation — see `scripts/train_se4l.py` and `scripts/preprocess_se4l.py` for usage.
 - Some model calls use tooling (`googleSearch`, `googleMaps`) and attach grounding metadata in `response.candidates[0].groundingMetadata.groundingChunks`.
 
 ## Files to check for most tasks 🗂️
