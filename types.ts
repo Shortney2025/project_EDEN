@@ -7,7 +7,8 @@ export enum AppScreen {
   SCANNER = 'SCANNER',
   LIBRARY = 'LIBRARY',
   SUPPORT = 'SUPPORT',
-  CHAT = 'CHAT'
+  CHAT = 'CHAT',
+  STORY = 'STORY'
 }
 
 export interface UserStats {

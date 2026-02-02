@@ -1,0 +1,39 @@
+name: Init Lovel AI smoke test
+
+on:
+  push:
+    branches: [ main, add/storyblok ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke:
+    name: Run init_lovel_ai.py
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install pip (safety)
+        run: python -m pip install --upgrade pip
+
+      - name: Make script executable
+        run: chmod +x scripts/init_lovel_ai.py
+
+      - name: Run Lovel AI initializer
+        run: |
+          set -e
+          python3 scripts/init_lovel_ai.py | tee output.txt
+
+      - name: Verify output
+        run: grep -q "Initializing Lovel AI..." output.txt
+
+      - name: Run unit tests
+        run: |
+          set -e
+          python3 -m unittest discover -v scripts

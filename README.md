@@ -15,6 +15,16 @@ View your app in AI Studio: https://ai.studio/apps/drive/1_b3sP2kmMrwei6ugLM2yUH
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Set environment variables in `.env.local` (copy `.env.local.example`):
+   - `STORYBLOK_API_TOKEN` — Storyblok access token (preview or public token as needed)
+   - `API_KEY` — Gemini / GenAI API key (if used)
 3. Run the app:
    `npm run dev`
+
+Optional: run the Lovel AI initializer to verify your environment:
+   `python3 scripts/init_lovel_ai.py`
+
+Optional: run a safety-protocol engine smoke test:
+   `python3 scripts/project_eden_engine.py`
+
+Note: If you add Storyblok components in the CMS, map them in `services/storyblok.tsx`'s `components` object.

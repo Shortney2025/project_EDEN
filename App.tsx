@@ -10,6 +10,7 @@ import Library from './components/Library';
 import Support from './components/Support';
 import ChatBot from './components/ChatBot';
 import HaidaLogo from './components/HaidaLogo';
+import StoryblokApp from './components/StoryblokApp';
 
 const App: React.FC = () => {
   const [screen, setScreen] = useState<AppScreen>(AppScreen.SPLASH);
@@ -179,10 +180,28 @@ const App: React.FC = () => {
                </div>
                <i className="fa-solid fa-message text-red-700"></i>
             </button>
+
+            <button 
+              onClick={() => setScreen(AppScreen.STORY)}
+              className="mt-4 w-full glass-card p-6 rounded-[2.5rem] border border-red-700/30 flex items-center justify-between group hover:bg-red-700/10 transition-all"
+            >
+               <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 flex items-center justify-center bg-white/5 rounded-full">
+                    <i className="fa-solid fa-book-open text-red-700"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-black text-white uppercase tracking-widest text-sm">Storyblok Preview</h4>
+                    <p className="text-[10px] text-teal-400 italic">Preview CMS-managed pages</p>
+                  </div>
+               </div>
+               <i className="fa-solid fa-arrow-up-right-from-square text-red-700"></i>
+            </button>
           </div>
         );
       case AppScreen.CHAT:
         return <ChatBot />;
+      case AppScreen.STORY:
+        return <StoryblokApp />;
       case AppScreen.MAP:
         return <MapScreen trees={trees} onPlant={handlePlantTree} onWater={handleWaterTree} />;
       case AppScreen.SCANNER:
