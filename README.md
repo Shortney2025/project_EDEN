@@ -24,4 +24,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1_b3sP2kmMrwei6ugLM2yUH
 Optional: run the Lovel AI initializer to verify your environment:
    `python3 scripts/init_lovel_ai.py`
 
+Optional: run a safety-protocol engine smoke test:
+   `python3 scripts/project_eden_engine.py`
+
 Note: If you add Storyblok components in the CMS, map them in `services/storyblok.tsx`'s `components` object.
