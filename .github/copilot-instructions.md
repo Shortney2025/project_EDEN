@@ -9,23 +9,23 @@ This file contains concise, actionable guidance for an AI coding agent to be imm
 - Dev commands: `npm install`, `npm run dev`, `npm run build`, `npm run preview` (Vite).
 
 ## What to know first (high-value facts) 🎯
-- The core AI surface is `analyzePlantImage(base64Image: string)` (see `services/geminiService.ts`). It expects a DataURL and splits with `base64.split(',')[1]` before sending to the GenAI API.
-- Expected JSON result shape returned by the scanner flow: { type: string, species?: string, confidence?: number, message: string }. `type` values used in UI: `watered_tree`, `invasive`, `recycling`, `unknown`.
-- `ChatBot` (components/ChatBot.tsx) constructs a conversational GenAI call and sets `systemInstruction` to define persona ("Lovel AI"). 
+- AI integrations live in `services/geminiService.ts`. The `ChatBot` (components/ChatBot.tsx) constructs a conversational GenAI call and sets `systemInstruction` to define persona ("Lovel AI").
+- Storyblok CMS integration is initialized in `services/storyblok.tsx`. Copy `.env.local.example` to `.env.local` and set `STORYBLOK_API_TOKEN`.
 - Some model calls use tooling (`googleSearch`, `googleMaps`) and attach grounding metadata in `response.candidates[0].groundingMetadata.groundingChunks`.
 
 ## Files to check for most tasks 🗂️
 - AI: `services/geminiService.ts` (models, tooling, response parsing)
-- Scanner: `components/Scanner.tsx` (image capture → DataURL → analyzePlantImage)
+- Scanner: `components/Scanner.tsx` (image capture UI)
 - Chat: `components/ChatBot.tsx` (chat flow, systemInstruction, simple error fallbacks)
+- Storyblok: `services/storyblok.tsx` (init and component mappings), `components/StoryblokApp.tsx` (example usage)
 - App shell & state: `App.tsx` (localStorage keys, state shape, UI flow)
 - Types & constants: `types.ts`, `constants.tsx` (use these rather than ad-hoc types/strings)
 - Package: `package.json` (dependencies: `@google/genai`, `react`, `vite`)
 
 ## Common, repo-specific tasks (examples) 🔧
 - Fix env var mismatch: README mentions `GEMINI_API_KEY` but code reads `process.env.API_KEY`. Prefer using `API_KEY` or update README + `.env.local` example.
-- Add robust parsing guard in `analyzePlantImage` — the code currently does `JSON.parse(response.text)` and falls back to `unknown` on error; ensure the agent returns well-formed JSON or add defensive checks.
-- When changing AI prompts or response schemas, update `components/Scanner.tsx` handling (it relies on `result.type`) and unit test parsing logic.
+- Add robust parsing guards where AI responses are parsed — avoid assuming `response.text` is valid JSON; add defensive checks and unit tests.
+- When changing AI prompts or response schemas, update consumers (e.g., `components/ChatBot.tsx`) and add unit tests for parsing and behavior.
 
 ## Patterns & conventions to follow ✨
 - Use `types.ts` enums/types for screen names, UserStats, and Tree structures.
@@ -41,13 +41,7 @@ This file contains concise, actionable guidance for an AI coding agent to be imm
 - Add unit tests for response parsing around `analyzePlantImage` and scanning flows.
 - If changing localStorage keys, document the migration or version them (there are no tests for persistence currently).
 
-## Example JSON (from a scanner run) 💬
-{
-  "type": "invasive",
-  "species": "Kudzu",
-  "confidence": 0.87,
-  "message": "Invasive detected: wear heavy gloves and remove root system deeply."
-}
+
 
 ---
 
