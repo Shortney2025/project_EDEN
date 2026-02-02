@@ -32,3 +32,8 @@ jobs:
 
       - name: Verify output
         run: grep -q "Initializing Lovel AI..." output.txt
+
+      - name: Run unit tests
+        run: |
+          set -e
+          python3 -m unittest scripts/test_init_lovel_ai.py -v
