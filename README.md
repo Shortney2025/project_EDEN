@@ -21,4 +21,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1_b3sP2kmMrwei6ugLM2yUH
 3. Run the app:
    `npm run dev`
 
+Optional: run the Lovel AI initializer to verify your environment:
+   `python3 scripts/init_lovel_ai.py`
+
 Note: If you add Storyblok components in the CMS, map them in `services/storyblok.tsx`'s `components` object.

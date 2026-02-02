@@ -38,7 +38,8 @@ This file contains concise, actionable guidance for an AI coding agent to be imm
 
 ## Dev & maintenance checklist ✅
 - Do not commit API keys — use `.env.local` and document variable name (`API_KEY` vs `GEMINI_API_KEY`).
-- Add unit tests for response parsing around `analyzePlantImage` and scanning flows.
+- Add unit tests for response parsing around AI responses and scanning/chat flows.
+- There's a small helper script `scripts/init_lovel_ai.py` that prints an initializing message and is useful for smoke-testing the local environment (`python3 scripts/init_lovel_ai.py`).
 - If changing localStorage keys, document the migration or version them (there are no tests for persistence currently).
 
 
